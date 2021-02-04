@@ -1,0 +1,30 @@
+version: '3'
+services:
+  # container for RUNNING web application
+  web:
+    build:
+      # specify where files/folders for image should be pulled
+      context: .
+      # specify name of Dockerfile to use for build
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      # leave placeholder in container for dir
+      - /app/node_modules
+      # map local dir to container dir
+      - .:/app
+  # container for TESTING web application
+  tests:
+    build:
+      # specify where files/folders for image should be pulled
+      context: .
+      # specify name of Dockerfile to use for build
+      dockerfile: Dockerfile.dev
+    volumes:
+      # leave placeholder in container for dir
+      - /app/node_modules
+      # map local dir to container dir
+      - .:/app
+    # override starting command used when container is created
+    command: ["npm", "run", "test"]
