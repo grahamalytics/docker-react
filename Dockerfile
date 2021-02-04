@@ -9,3 +9,5 @@ RUN npm run build
 # Process 2/2 - deploy build to nginx image
 FROM nginx
 COPY --from=builder /app/build /usr/share/nginx/html
+
+# insignificant change
