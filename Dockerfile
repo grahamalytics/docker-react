@@ -8,6 +8,6 @@ RUN npm run build
 
 # Process 2/2 - deploy build to nginx image
 FROM nginx
-# Expose port 80 for deploy to AWS EBS
+# Expose port 80 for deploy to AWS EB
 EXPOSE 80
 COPY --from=builder /app/build /usr/share/nginx/html
